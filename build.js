@@ -12,8 +12,8 @@ process.env.INIT_CWD = process.cwd()
 process.env.NODE_OPTIONS = '--experimental-json-modules'
 
 // Run next build
-console.log('Running: next build')
-const build = spawnSync('next', ['build'], {
+console.log('Running: npx next build')
+const build = spawnSync('npx', ['next', 'build'], {
   stdio: 'inherit',
   shell: true,
 })
