@@ -4,18 +4,28 @@
  * without requiring cross-env or platform-specific commands
  */
 
-// Set environment variables before requiring anything
+const { execSync } = require('child_process')
+
+// Set environment variables
 process.env.INIT_CWD = process.cwd()
 process.env.NODE_OPTIONS = '--experimental-json-modules'
 
-// Set up process.argv for next CLI
-process.argv = [process.execPath, 'next', 'build']
-
 try {
-  // Direct require and run next CLI
   console.log('Running: next build')
-  require('next/dist/bin/next')
+  // Use shell command - works on both Windows and Linux
+  execSync('npx next build', {
+    stdio: 'inherit',
+    env: process.env,
+  })
+
+  console.log('Running: node ./scripts/postbuild.mjs')
+  execSync('node ./scripts/postbuild.mjs', {
+    stdio: 'inherit',
+    env: process.env,
+  })
+
+  console.log('Build completed successfully!')
 } catch (error) {
-  console.error('Build failed:', error.message)
+  console.error('Build failed')
   process.exit(1)
 }
