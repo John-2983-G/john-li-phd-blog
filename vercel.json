@@ -8,6 +8,5 @@
     "api/**": {
       "maxDuration": 60
     }
-  },
-  "ignoreCommand": "npm run build"
+  }
 }
