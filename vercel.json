@@ -3,5 +3,11 @@
   "outputDirectory": ".next",
   "env": {
     "GIT_SUBMODULE_STRATEGY": "none"
-  }
+  },
+  "functions": {
+    "api/**": {
+      "maxDuration": 60
+    }
+  },
+  "ignoreCommand": "npm run build"
 }
