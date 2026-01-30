@@ -1,7 +1,0 @@
-{
-  "buildCommand": "npm run build",
-  "outputDirectory": ".next",
-  "env": {
-    "GIT_SUBMODULE_STRATEGY": "none"
-  }
-}
