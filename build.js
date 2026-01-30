@@ -5,15 +5,19 @@
  */
 
 const { execSync } = require('child_process')
+const path = require('path')
 
 // Set environment variables
 process.env.INIT_CWD = process.cwd()
 process.env.NODE_OPTIONS = '--experimental-json-modules'
 
+// Locate the local next binary
+const nextBin = path.join(process.cwd(), 'node_modules', '.bin', 'next')
+
 try {
   console.log('Running: next build')
-  // Use shell command - works on both Windows and Linux
-  execSync('npx next build', {
+  // Use the local binary directly to avoid "command not found" errors
+  execSync(`"${nextBin}" build`, {
     stdio: 'inherit',
     env: process.env,
   })
